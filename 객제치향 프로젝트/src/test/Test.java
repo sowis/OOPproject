@@ -142,7 +142,7 @@ public class Test {
 
 //        20) 조건식을 만족하는 행을 얻는다.
 //        table.selectRowsBy("Name", (String x) -> x.contains("Lee")).print();
-        table.selectRowsBy("Age", (Integer x) -> x < 20).print();
+//        table.selectRowsBy("Age", (Integer x) -> x < 20).print();
 //        table.selectRowsBy("Fare", (Double x) -> x < 20).print();
 //        table.selectRowsBy("Cabin", (String x) -> x.length() < 3).print();
 //        table.selectRowsBy("Age", (Object x) -> x == null).print();

@@ -456,24 +456,20 @@ class TableImpl implements Table {
 
         ArrayList<Object> columnItems = targetColumn.getItems();
         for (int i = 0; i < columnItems.size(); ++i) {
-            if (targetColumn.getType() == Double.class) {
-                if (predicate.test((T)columnItems.get(i))) {
-                    indices.add(i);
-                }
-            } else if (targetColumn.getType() == String.class) {
-                if (columnItems.get(i) == null) {
-                    if (predicate.test((T)"")) {
-                        indices.add(i);
-                    }
-                } else {
+            try {
+                if (targetColumn.getType() == Double.class || targetColumn.getType() == String.class) {
                     if (predicate.test((T)columnItems.get(i))) {
                         indices.add(i);
                     }
+                } else {
+                    if (predicate.test((T)Integer.valueOf(columnItems.get(i).toString()))) {
+                        indices.add(i);
+                    }
                 }
-            } else {
-                if (predicate.test((T)Integer.valueOf(columnItems.get(i).toString()))) {
-                    indices.add(i);
-                }
+            } catch (NullPointerException e) {
+
+            } catch (ClassCastException e) {
+
             }
         }
 
